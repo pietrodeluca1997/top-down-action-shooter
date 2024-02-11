@@ -2,12 +2,16 @@
 
 public class PlayerController : AbstractSingleton<PlayerController>
 {
-    protected InputActions inputActions;
+    public InputActions InputActions { get; private set; }
 
     [SerializeField] private LayerMask mouseAimLayerMask;
 
     public Vector3 MousePosition { get; private set; }
     public Vector3 MovementInput { get; private set; }
+
+    public delegate void PlayerControllerActionDelegateSignature(EInputActionEventType eventType);
+
+    public event PlayerControllerActionDelegateSignature OnLeftShiftAction;
 
     public Vector3 CalculateMouseWorldPosition()
     {
@@ -28,22 +32,25 @@ public class PlayerController : AbstractSingleton<PlayerController>
     {
         base.Awake();
 
-        inputActions = new InputActions();
+        InputActions = new InputActions();
 
-        inputActions.CharacterOnFoot.Aim.performed += context => MousePosition = context.ReadValue<Vector2>();
-        inputActions.CharacterOnFoot.Aim.canceled += context => MousePosition = Vector2.zero;
+        InputActions.PlayerActions.MousePosition.performed += context => MousePosition = context.ReadValue<Vector2>();
+        InputActions.PlayerActions.MousePosition.canceled += context => MousePosition = Vector2.zero;
 
-        inputActions.CharacterOnFoot.Movement.performed += context => MovementInput = context.ReadValue<Vector2>();
-        inputActions.CharacterOnFoot.Movement.canceled += context => MovementInput = Vector2.zero;
+        InputActions.PlayerActions.WASD.performed += context => MovementInput = context.ReadValue<Vector2>();
+        InputActions.PlayerActions.WASD.canceled += context => MovementInput = Vector2.zero;
+
+        InputActions.PlayerActions.LeftShift.performed += context => OnLeftShiftAction?.Invoke(EInputActionEventType.Performed);
+        InputActions.PlayerActions.LeftShift.canceled += context => OnLeftShiftAction?.Invoke(EInputActionEventType.Canceled);
     }
 
     private void OnEnable()
     {
-        inputActions.Enable();
+        InputActions.Enable();
     }
 
     private void OnDisable()
     {
-        inputActions.Disable();
+        InputActions.Disable();
     }
 }

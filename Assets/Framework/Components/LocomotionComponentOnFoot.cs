@@ -5,7 +5,11 @@ public class LocomotionComponentOnFoot : MonoBehaviour
     private float movementSpeed;
 
     [SerializeField]
+    private float runningSpeed;
+
+    [SerializeField]
     private float rotationSpeed;
+
 
     private Vector3 movementDirection;
     public Vector3 MovementDirection {  get => movementDirection; private set => movementDirection = value; }
@@ -19,8 +23,7 @@ public class LocomotionComponentOnFoot : MonoBehaviour
 
     public void Move(Vector2 movementInput)
     {
-        MovementDirection = new Vector3(movementInput.x, 0.0f, movementInput.y);
-
+        CalculateDirection(movementInput);
         ApplyGravity();
 
         if (MovementDirection.magnitude > 0)
@@ -29,9 +32,25 @@ public class LocomotionComponentOnFoot : MonoBehaviour
         }
     }
 
+    public void Run(Vector2 movementInput)
+    {
+        CalculateDirection(movementInput);
+        ApplyGravity();
+
+        if (MovementDirection.magnitude > 0)
+        {
+            CharacterController.Move(runningSpeed * Time.deltaTime * MovementDirection);
+        }
+    }
+
     public void LookAt(Vector3 direction)
     {
         transform.forward = direction;
+    }
+
+    private void CalculateDirection(Vector2 movementInput)
+    {
+        MovementDirection = new Vector3(movementInput.x, 0.0f, movementInput.y);
     }
 
     private void ApplyGravity()

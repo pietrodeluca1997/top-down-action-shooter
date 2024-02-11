@@ -2,20 +2,11 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "Character - OnFoot",
+            "name": "Player Actions",
             "id": "98e6d870-830f-4881-a442-49390e7fd1f4",
             "actions": [
                 {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "b16d1bd3-0396-436a-8584-99f4404df1d7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Movement",
+                    "name": "WASD",
                     "type": "Value",
                     "id": "2847cb63-1da4-4b83-a7d7-0659c2e9bb5b",
                     "expectedControlType": "Vector2",
@@ -24,27 +15,25 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Aim",
+                    "name": "MousePosition",
                     "type": "Value",
                     "id": "388962cd-f4c3-47f5-9872-a4d83c698650",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "LeftShift",
+                    "type": "Button",
+                    "id": "b654a1be-ce37-4eba-8890-e6e84541e50f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "a73d905e-b333-40ff-971f-9777254772a0",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "921858d3-a657-49d8-a4fd-585035be6520",
@@ -52,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "WASD",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -63,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -74,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -85,7 +74,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -96,7 +85,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -107,7 +96,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbfd4e1e-a955-46f0-bbea-558d8b26bd4f",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftShift",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

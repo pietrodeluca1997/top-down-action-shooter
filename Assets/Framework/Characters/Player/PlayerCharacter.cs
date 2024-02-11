@@ -12,11 +12,10 @@ public class PlayerCharacter : CharacterBase
     public PlayerStateMachine StateMachine { get; private set; }
     public IPlayerStateBase IdleState { get; private set; }
     public IPlayerStateBase WalkState { get; private set; }
+    public IPlayerStateBase RunningState { get; private set; }
 
     protected void Awake()
     {
-        StateMachine = GetComponent<PlayerStateMachine>();
-
         Controller = GetComponent<CharacterController>();
 
         LocomotionComponentOnFoot = GetComponent<LocomotionComponentOnFoot>();
@@ -24,8 +23,10 @@ public class PlayerCharacter : CharacterBase
 
         Animator = GetComponent<Animator>();
 
+        StateMachine = GetComponent<PlayerStateMachine>();
         IdleState = new PlayerIdleState(this, StateMachine, "IsIdle");
         WalkState = new PlayerWalkState(this, StateMachine, "IsWalking");
+        RunningState = new PlayerRunningState(this, StateMachine, "IsRunning");
     }
 
     private void Start()

@@ -1,10 +1,15 @@
 ﻿public class PlayerWalkState : PlayerStateBase
 {
-    public override string AnimationStateName { get; }
-
-    public PlayerWalkState(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine, string animationStateName) : base(playerCharacter, playerStateMachine)
+    public PlayerWalkState(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine, string animationStateName) : base(playerCharacter, playerStateMachine, animationStateName)
     {
-        AnimationStateName = animationStateName;
+
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        StateMachine.PlayerController.OnLeftShiftAction += RunAction;
     }
 
     public override void Update()
@@ -17,5 +22,20 @@
         }
 
         PlayerCharacter.LocomotionComponentOnFoot.Move(StateMachine.PlayerController.MovementInput);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        StateMachine.PlayerController.OnLeftShiftAction -= RunAction;
+    }
+
+    public void RunAction(EInputActionEventType action)
+    {
+        if(action.Equals(EInputActionEventType.Performed))
+        {
+            StateMachine.ChangeState(PlayerCharacter.RunningState);
+        }
     }
 }

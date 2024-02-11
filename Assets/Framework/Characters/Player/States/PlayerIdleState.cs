@@ -1,10 +1,8 @@
-﻿public class PlayerIdleState : PlayerStateBase
+﻿public class PlayerIdleState : PlayerGroundedState
 {
-    public override string AnimationStateName { get; }
-
-    public PlayerIdleState(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine, string animationStateName) : base(playerCharacter, playerStateMachine)
+    public PlayerIdleState(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine, string animationStateName) : base(playerCharacter, playerStateMachine, animationStateName)
     {
-        AnimationStateName = animationStateName;
+
     }
 
     public override void Update()

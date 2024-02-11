@@ -5,16 +5,17 @@ public abstract class PlayerStateBase : IPlayerStateBase
     public PlayerCharacter PlayerCharacter { get; }
     public PlayerStateMachine StateMachine { get; }
 
-    public abstract string AnimationStateName { get; }
+    public string AnimationStateName { get; }
     private string XVelocityAnimationKey { get; }
     private string ZVelocityAnimationKey { get; }
 
-    public PlayerStateBase(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine)
+    public PlayerStateBase(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine, string animationStateName)
     {
         PlayerCharacter = playerCharacter;
         StateMachine = playerStateMachine;
         XVelocityAnimationKey = "xVelocity";
         ZVelocityAnimationKey = "zVelocity";
+        AnimationStateName = animationStateName;
     }
 
     public virtual void Enter()
@@ -38,7 +39,7 @@ public abstract class PlayerStateBase : IPlayerStateBase
         }
     }
 
-    public void Exit()
+    public virtual void Exit()
     {
         PlayerCharacter.Animator.SetBool(AnimationStateName, false);
     }
