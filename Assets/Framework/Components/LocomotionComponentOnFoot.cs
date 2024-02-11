@@ -7,8 +7,8 @@ public class LocomotionComponentOnFoot : MonoBehaviour
     [SerializeField]
     private float rotationSpeed;
 
-    [SerializeField]
     private Vector3 movementDirection;
+    public Vector3 MovementDirection {  get => movementDirection; private set => movementDirection = value; }
 
     private const float gravityYScaleOnAir = 9.81f;
     private const float defaultVerticalVelocity = -0.5f;
@@ -19,13 +19,13 @@ public class LocomotionComponentOnFoot : MonoBehaviour
 
     public void Move(Vector2 movementInput)
     {
-        movementDirection = new Vector3(movementInput.x, 0.0f, movementInput.y);
+        MovementDirection = new Vector3(movementInput.x, 0.0f, movementInput.y);
 
         ApplyGravity();
 
-        if (movementDirection.magnitude > 0)
+        if (MovementDirection.magnitude > 0)
         {
-            CharacterController.Move(movementSpeed * Time.deltaTime * movementDirection);
+            CharacterController.Move(movementSpeed * Time.deltaTime * MovementDirection);
         }
     }
 

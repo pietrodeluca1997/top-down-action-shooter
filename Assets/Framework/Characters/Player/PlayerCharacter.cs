@@ -10,8 +10,8 @@ public class PlayerCharacter : CharacterBase
     public LocomotionComponentOnFoot LocomotionComponentOnFoot { get; private set; }
     public Animator Animator { get; private set; }
     public PlayerStateMachine StateMachine { get; private set; }
-    public IStateBase IdleState { get; private set; }
-    public IStateBase WalkState { get; private set; }
+    public IPlayerStateBase IdleState { get; private set; }
+    public IPlayerStateBase WalkState { get; private set; }
 
     protected void Awake()
     {

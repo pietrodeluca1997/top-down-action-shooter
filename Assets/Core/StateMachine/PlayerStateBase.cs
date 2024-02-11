@@ -6,11 +6,15 @@ public abstract class PlayerStateBase : IPlayerStateBase
     public PlayerStateMachine StateMachine { get; }
 
     public abstract string AnimationStateName { get; }
+    private string XVelocityAnimationKey { get; }
+    private string ZVelocityAnimationKey { get; }
 
     public PlayerStateBase(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine)
     {
         PlayerCharacter = playerCharacter;
         StateMachine = playerStateMachine;
+        XVelocityAnimationKey = "xVelocity";
+        ZVelocityAnimationKey = "zVelocity";
     }
 
     public virtual void Enter()
@@ -20,6 +24,12 @@ public abstract class PlayerStateBase : IPlayerStateBase
 
     public virtual void Update()
     {
+        float xVelocity = Vector3.Dot(PlayerCharacter.LocomotionComponentOnFoot.MovementDirection.normalized, PlayerCharacter.transform.right);
+        float zVelocity = Vector3.Dot(PlayerCharacter.LocomotionComponentOnFoot.MovementDirection.normalized, PlayerCharacter.transform.forward);
+
+        PlayerCharacter.Animator.SetFloat(XVelocityAnimationKey, xVelocity, .1f, Time.deltaTime);
+        PlayerCharacter.Animator.SetFloat(ZVelocityAnimationKey, zVelocity, .1f, Time.deltaTime);
+
         Vector3 mouseWorldPosition = StateMachine.PlayerController.CalculateMouseWorldPosition();
 
         if (mouseWorldPosition != Vector3.zero)
