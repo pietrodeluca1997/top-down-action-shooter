@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 94f1a000406d32e46817283e895646c3
+guid: a901ba6ca360bc045b2e072c66ca9451
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,10 +17,7 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'mixamorig:LeftFoot'
-      : position error = 2.547440 mm\n\t'mixamorig:RightLeg' : position error = 1.101082
-      mm\n\t'mixamorig:RightFoot' : position error = 3.141862 mm\n"
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -36,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RifleWalkLeft
+      name: Jog Backward
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
