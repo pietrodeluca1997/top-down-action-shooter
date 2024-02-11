@@ -40,7 +40,10 @@ We welcome contributions from developers of all skill levels. If you'd like to c
 ## Acknowledgements
 
 Special thanks to the following resources and individuals:
-
+- AlexDev for his valuable contribution of assets and knowledge to the project. You should really take the time to get to know him!
+  - Website: [UnityAlexDev](https://unityalexdev.com/)
+  - YouTube Channel: [AlexDev](https://www.youtube.com/channel/UCiNwDxYcEWhv3zGWCLl7ltw)
+  - Udemy Page: [Alex on Udemy](https://www.udemy.com/user/alex-13394/)
 - Unity Technologies for providing the powerful Unity Engine.
 - Our dedicated team of developers and contributors for their hard work and creativity.
 
