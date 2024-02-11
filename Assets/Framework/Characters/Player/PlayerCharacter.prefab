@@ -979,10 +979,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4583217235858170142}
   - component: {fileID: 3972415731659206273}
-  - component: {fileID: 4653833593199377187}
   - component: {fileID: 5162530635197336657}
-  - component: {fileID: 4619962331742496960}
+  - component: {fileID: 4441498635655227008}
+  - component: {fileID: 4653833593199377187}
   - component: {fileID: 4288793581232810223}
+  - component: {fileID: 8706854242369586721}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -1033,6 +1034,33 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.65, z: 0}
+--- !u!114 &5162530635197336657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526323756083989983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d527d0a778354b34fb5b3c08b32cb9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4441498635655227008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526323756083989983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4624bf802ab4cf741b2dc18103334c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseAimLayerMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &4653833593199377187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,33 +1076,6 @@ MonoBehaviour:
   movementSpeed: 2.5
   rotationSpeed: 5
   movementDirection: {x: 0, y: 0, z: 0}
---- !u!114 &5162530635197336657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3526323756083989983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d527d0a778354b34fb5b3c08b32cb9f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4619962331742496960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3526323756083989983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1eec328b63bdeb4698284b0c26b4ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseAimLayerMask:
-    serializedVersion: 2
-    m_Bits: 192
 --- !u!95 &4288793581232810223
 Animator:
   serializedVersion: 5
@@ -1096,6 +1097,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8706854242369586721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526323756083989983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa5aef36b68bd346ac16d4e774d3999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3526411559229449031
 GameObject:
   m_ObjectHideFlags: 0

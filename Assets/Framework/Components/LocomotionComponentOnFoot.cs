@@ -20,7 +20,7 @@ public class LocomotionComponentOnFoot : MonoBehaviour
     public void Move(Vector2 movementInput)
     {
         movementDirection = new Vector3(movementInput.x, 0.0f, movementInput.y);
-        
+
         ApplyGravity();
 
         if (movementDirection.magnitude > 0)

@@ -10,7 +10,7 @@ public class LevelGenerator : AbstractSingleton<LevelGenerator>
 
     // Generates a random map piece and instantiates it.
     [ContextMenu("Generate Random Map Piece")]
-    public void GenerateLevelPart()
+    public void GenerateRandomMapPiece()
     {
         Instantiate(PickRandomMapPiece());
     }

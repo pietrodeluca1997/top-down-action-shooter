@@ -2,15 +2,34 @@
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(LocomotionComponentOnFoot))]
-public class PlayerCharacter : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerStateMachine))]
+public class PlayerCharacter : CharacterBase
 {
     public CharacterController Controller { get; private set; }
     public LocomotionComponentOnFoot LocomotionComponentOnFoot { get; private set; }
+    public Animator Animator { get; private set; }
+    public PlayerStateMachine StateMachine { get; private set; }
+    public IStateBase IdleState { get; private set; }
+    public IStateBase WalkState { get; private set; }
 
-    private void Awake()
+    protected void Awake()
     {
+        StateMachine = GetComponent<PlayerStateMachine>();
+
         Controller = GetComponent<CharacterController>();
+
         LocomotionComponentOnFoot = GetComponent<LocomotionComponentOnFoot>();
         LocomotionComponentOnFoot.CharacterController = Controller;
+
+        Animator = GetComponent<Animator>();
+
+        IdleState = new PlayerIdleState(this, StateMachine, "IsIdle");
+        WalkState = new PlayerWalkState(this, StateMachine, "IsWalking");
+    }
+
+    private void Start()
+    {
+        StateMachine.Initialize(IdleState);
     }
 }
