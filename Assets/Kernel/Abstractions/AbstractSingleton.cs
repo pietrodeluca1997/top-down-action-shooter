@@ -20,6 +20,21 @@ public class AbstractSingleton<TDesiredSingletonClass> : MonoBehaviour where TDe
     /// </summary>
     protected virtual void Awake()
     {
+        CheckInstance();
+    }
+
+    protected virtual void OnEnable()
+    {
+        CheckInstance();
+    }
+
+    protected virtual void Start()
+    {
+        CheckInstance();
+    }
+
+    protected virtual void CheckInstance()
+    {
         if (Instance is not null && Instance != this)
         {
             Destroy(gameObject);
@@ -27,7 +42,6 @@ public class AbstractSingleton<TDesiredSingletonClass> : MonoBehaviour where TDe
         else
         {
             Instance = this as TDesiredSingletonClass;
-
             DontDestroyOnLoad(Instance);
         }
     }

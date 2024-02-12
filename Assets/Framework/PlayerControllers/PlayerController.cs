@@ -1,18 +1,30 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Singleton class that handles player input and actions.
+/// </summary>
 public class PlayerController : AbstractSingleton<PlayerController>
 {
+    /// <summary>
+    /// The input actions associated with the player.
+    /// </summary>
     public InputActions InputActions { get; private set; }
 
     [SerializeField] private LayerMask mouseAimLayerMask;
 
+    /// <summary>
+    /// The position of the mouse in screen coordinates.
+    /// </summary>
     public Vector3 MousePosition { get; private set; }
+
+    /// <summary>
+    /// The input for player movement.
+    /// </summary>
     public Vector3 MovementInput { get; private set; }
 
-    public delegate void PlayerControllerActionDelegateSignature(EInputActionEventType eventType);
-
-    public event PlayerControllerActionDelegateSignature OnLeftShiftAction;
-
+    /// <summary>
+    /// Calculates the world position of the mouse based on screen coordinates.
+    /// </summary>
     public Vector3 CalculateMouseWorldPosition()
     {
         Ray cameraRay = Camera.main.ScreenPointToRay(MousePosition);
@@ -28,6 +40,7 @@ public class PlayerController : AbstractSingleton<PlayerController>
 
         return Vector3.zero;
     }
+
     protected override void Awake()
     {
         base.Awake();
@@ -42,10 +55,13 @@ public class PlayerController : AbstractSingleton<PlayerController>
 
         InputActions.PlayerActions.LeftShift.performed += context => OnLeftShiftAction?.Invoke(EInputActionEventType.Performed);
         InputActions.PlayerActions.LeftShift.canceled += context => OnLeftShiftAction?.Invoke(EInputActionEventType.Canceled);
+
+        InputActions.PlayerActions.Space.performed += context => OnSpaceAction?.Invoke(EInputActionEventType.Performed);
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         InputActions.Enable();
     }
 
@@ -53,4 +69,16 @@ public class PlayerController : AbstractSingleton<PlayerController>
     {
         InputActions.Disable();
     }
+
+    public delegate void PlayerControllerActionDelegateSignature(EInputActionEventType eventType);
+
+    /// <summary>
+    /// Event delegate for Left Shift action.
+    /// </summary>
+    public event PlayerControllerActionDelegateSignature OnLeftShiftAction;
+
+    /// <summary>
+    /// Event delegate for Space action.
+    /// </summary>
+    public event PlayerControllerActionDelegateSignature OnSpaceAction;
 }
