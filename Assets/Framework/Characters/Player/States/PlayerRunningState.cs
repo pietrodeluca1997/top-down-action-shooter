@@ -16,11 +16,6 @@
     {
         base.Update();
 
-        if (StateMachine.PlayerController.MovementInput.magnitude == 0)
-        {
-            StateMachine.ChangeState(PlayerCharacter.IdleState);
-        }
-
         PlayerCharacter.LocomotionComponentOnFoot.Run(StateMachine.PlayerController.MovementInput);
     }
 

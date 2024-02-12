@@ -8,8 +8,14 @@ public class LocomotionComponentOnFoot : MonoBehaviour
     private float runningSpeed;
 
     [SerializeField]
+    private float reducedSpeedWhenBackwards;
+
+    [SerializeField]
     private float rotationSpeed;
 
+    [SerializeField]
+    private Vector3 moventDirectionRelativeToOrientation;
+    public Vector3 MovementDirectionRelativeToOrientation {  get => moventDirectionRelativeToOrientation; private set => moventDirectionRelativeToOrientation = value; }
 
     private Vector3 movementDirection;
     public Vector3 MovementDirection {  get => movementDirection; private set => movementDirection = value; }
@@ -28,7 +34,9 @@ public class LocomotionComponentOnFoot : MonoBehaviour
 
         if (MovementDirection.magnitude > 0)
         {
-            CharacterController.Move(movementSpeed * Time.deltaTime * MovementDirection);
+            float moveSpeedByDirection = MovementDirectionRelativeToOrientation.z <= -0.3 ? movementSpeed * reducedSpeedWhenBackwards : movementSpeed;
+            
+            CharacterController.Move(moveSpeedByDirection * Time.deltaTime * MovementDirection);
         }
     }
 
@@ -39,7 +47,9 @@ public class LocomotionComponentOnFoot : MonoBehaviour
 
         if (MovementDirection.magnitude > 0)
         {
-            CharacterController.Move(runningSpeed * Time.deltaTime * MovementDirection);
+            float runningSpeedByDirection = MovementDirectionRelativeToOrientation.z <= -0.3 ? runningSpeed * reducedSpeedWhenBackwards : runningSpeed;
+
+            CharacterController.Move(runningSpeedByDirection * Time.deltaTime * MovementDirection);
         }
     }
 
@@ -52,6 +62,7 @@ public class LocomotionComponentOnFoot : MonoBehaviour
     private void CalculateDirection(Vector2 movementInput)
     {
         MovementDirection = new Vector3(movementInput.x, 0.0f, movementInput.y);
+        MovementDirectionRelativeToOrientation = new Vector3(Vector3.Dot(MovementDirection.normalized, transform.right), 0f, Vector3.Dot(MovementDirection.normalized, transform.forward));
     }
 
     private void ApplyGravity()

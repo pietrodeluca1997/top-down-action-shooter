@@ -2,12 +2,14 @@
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(LocomotionComponentOnFoot))]
+[RequireComponent(typeof(InteractionComponent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerStateMachine))]
 public class PlayerCharacter : CharacterBase
 {
     public CharacterController Controller { get; private set; }
     public LocomotionComponentOnFoot LocomotionComponentOnFoot { get; private set; }
+    public InteractionComponent InteractionComponent { get; private set; }
     public Animator Animator { get; private set; }
     public PlayerStateMachine StateMachine { get; private set; }
     public IPlayerStateBase IdleState { get; private set; }
@@ -20,6 +22,8 @@ public class PlayerCharacter : CharacterBase
 
         LocomotionComponentOnFoot = GetComponent<LocomotionComponentOnFoot>();
         LocomotionComponentOnFoot.CharacterController = Controller;
+
+        InteractionComponent = GetComponent<InteractionComponent>();
 
         Animator = GetComponent<Animator>();
 

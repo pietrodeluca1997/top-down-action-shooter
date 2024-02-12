@@ -25,11 +25,8 @@ public abstract class PlayerStateBase : IPlayerStateBase
 
     public virtual void Update()
     {
-        float xVelocity = Vector3.Dot(PlayerCharacter.LocomotionComponentOnFoot.MovementDirection.normalized, PlayerCharacter.transform.right);
-        float zVelocity = Vector3.Dot(PlayerCharacter.LocomotionComponentOnFoot.MovementDirection.normalized, PlayerCharacter.transform.forward);
-
-        PlayerCharacter.Animator.SetFloat(XVelocityAnimationKey, xVelocity, .1f, Time.deltaTime);
-        PlayerCharacter.Animator.SetFloat(ZVelocityAnimationKey, zVelocity, .1f, Time.deltaTime);
+        PlayerCharacter.Animator.SetFloat(XVelocityAnimationKey, PlayerCharacter.LocomotionComponentOnFoot.MovementDirectionRelativeToOrientation.x, .1f, Time.deltaTime);
+        PlayerCharacter.Animator.SetFloat(ZVelocityAnimationKey, PlayerCharacter.LocomotionComponentOnFoot.MovementDirectionRelativeToOrientation.z, .1f, Time.deltaTime);
 
         Vector3 mouseWorldPosition = StateMachine.PlayerController.CalculateMouseWorldPosition();
 
