@@ -45,7 +45,8 @@ public class LocomotionComponentOnFoot : MonoBehaviour
 
     public void LookAt(Vector3 direction)
     {
-        transform.forward = direction;
+        Quaternion lookAtMouseRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookAtMouseRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void CalculateDirection(Vector2 movementInput)
