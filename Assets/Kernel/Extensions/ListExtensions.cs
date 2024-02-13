@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// Static class that contains extension methods for the List<TCollectionItem> class.

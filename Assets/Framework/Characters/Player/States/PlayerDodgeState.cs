@@ -31,7 +31,7 @@ public class PlayerDodgeState : PlayerGroundedState
         // Get the length of the current animation
         animationLength = PlayerCharacter.Animator.GetCurrentAnimatorStateInfo(0).length;
         // Store the movement direction when the dodge starts
-        movementDirectionWhenStartDodging = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection;        
+        movementDirectionWhenStartDodging = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection;
     }
 
     /// <summary>

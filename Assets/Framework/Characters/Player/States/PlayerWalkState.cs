@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// Represents the player's walk state when the player character is on the ground.
 /// </summary>
 public class PlayerWalkState : PlayerStateBase

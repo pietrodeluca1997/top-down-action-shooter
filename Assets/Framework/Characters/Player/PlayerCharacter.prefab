@@ -639,6 +639,37 @@ Transform:
   - {fileID: 1704924017006422266}
   m_Father: {fileID: 380381971925177435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2300919396051542818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 465495794771095783}
+  m_Layer: 0
+  m_Name: PistolWeaponSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &465495794771095783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2300919396051542818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.055947013, y: 0.7048901, z: 0.70489, w: -0.055947}
+  m_LocalPosition: {x: -0.0523, y: 0.1606, z: -0.0071}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3829360529233180960}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 189.076}
 --- !u!1 &2458247326390780598
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +932,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1241357246133523880}
+  - {fileID: 465495794771095783}
   m_Father: {fileID: 8803097352147165660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3411248401162643738
@@ -984,6 +1016,9 @@ GameObject:
   - component: {fileID: 4653833593199377187}
   - component: {fileID: 4288793581232810223}
   - component: {fileID: 8706854242369586721}
+  - component: {fileID: 6696001092300070301}
+  - component: {fileID: 234678565721562225}
+  - component: {fileID: 3739311460155778568}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -1074,8 +1109,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2.5
+  runningSpeed: 0
+  reducedSpeedWhenBackwards: 0
   rotationSpeed: 5
-  movementDirection: {x: 0, y: 0, z: 0}
+  movementDirectionRelativeToOrientation: {x: 0, y: 0, z: 0}
 --- !u!95 &4288793581232810223
 Animator:
   serializedVersion: 5
@@ -1107,6 +1144,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4aa5aef36b68bd346ac16d4e774d3999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6696001092300070301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526323756083989983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445e1e80de7fa454d917dc2afe59d8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsAvailableForInteraction: []
+--- !u!114 &234678565721562225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526323756083989983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f3c1e81f3a38d47becc6234c3b0ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pistolWeaponSocket: {fileID: 465495794771095783}
+--- !u!114 &3739311460155778568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526323756083989983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aec3bd9387987c469a13db93d8747bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3526411559229449031

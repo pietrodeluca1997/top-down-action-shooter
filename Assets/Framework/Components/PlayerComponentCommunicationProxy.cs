@@ -45,7 +45,7 @@ public class PlayerComponentCommunicationProxy : MonoBehaviour
 
     public void OnInteractionAction(EInputActionEventType actionEventType)
     {
-        if(InteractionComponent.TryGetNearestObject(out InteractableObject nearestInteractableObject))
+        if (InteractionComponent.TryGetNearestObject(out InteractableObject nearestInteractableObject))
         {
             nearestInteractableObject.Interact(PlayerCharacter);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionComponent : MonoBehaviour
-{   
+{
     private struct InteractableDistance : IComparable<InteractableDistance>
     {
         public InteractableObject interactableObject;

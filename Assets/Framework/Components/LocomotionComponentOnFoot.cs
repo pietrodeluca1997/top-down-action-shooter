@@ -29,7 +29,7 @@ public class LocomotionComponentOnFoot : MonoBehaviour
 
     private const float gravityYScaleOnAir = 9.81f;
     private const float defaultVerticalVelocity = -0.5f;
-    private const float backwardsThreshold = -0.3f; 
+    private const float backwardsThreshold = -0.3f;
 
 
     private float verticalVelocity = defaultVerticalVelocity;
