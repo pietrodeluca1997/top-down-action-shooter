@@ -62,6 +62,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""E"",
+                    ""type"": ""Button"",
+                    ""id"": ""81e75307-d2a2-4efb-a4bb-30da4729fd69"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Space"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7b30f68-da2d-4324-968d-e70b6adc836e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""E"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_PlayerActions_MousePosition = m_PlayerActions.FindAction("MousePosition", throwIfNotFound: true);
         m_PlayerActions_LeftShift = m_PlayerActions.FindAction("LeftShift", throwIfNotFound: true);
         m_PlayerActions_Space = m_PlayerActions.FindAction("Space", throwIfNotFound: true);
+        m_PlayerActions_E = m_PlayerActions.FindAction("E", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_MousePosition;
     private readonly InputAction m_PlayerActions_LeftShift;
     private readonly InputAction m_PlayerActions_Space;
+    private readonly InputAction m_PlayerActions_E;
     public struct PlayerActionsActions
     {
         private @InputActions m_Wrapper;
@@ -237,6 +259,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_PlayerActions_MousePosition;
         public InputAction @LeftShift => m_Wrapper.m_PlayerActions_LeftShift;
         public InputAction @Space => m_Wrapper.m_PlayerActions_Space;
+        public InputAction @E => m_Wrapper.m_PlayerActions_E;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +281,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Space.started += instance.OnSpace;
             @Space.performed += instance.OnSpace;
             @Space.canceled += instance.OnSpace;
+            @E.started += instance.OnE;
+            @E.performed += instance.OnE;
+            @E.canceled += instance.OnE;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -274,6 +300,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Space.started -= instance.OnSpace;
             @Space.performed -= instance.OnSpace;
             @Space.canceled -= instance.OnSpace;
+            @E.started -= instance.OnE;
+            @E.performed -= instance.OnE;
+            @E.canceled -= instance.OnE;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -297,5 +326,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnLeftShift(InputAction.CallbackContext context);
         void OnSpace(InputAction.CallbackContext context);
+        void OnE(InputAction.CallbackContext context);
     }
 }

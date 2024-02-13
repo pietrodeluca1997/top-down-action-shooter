@@ -3,11 +3,11 @@
 /// <summary>
 /// Represents the main player character in the game.
 /// </summary>
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(LocomotionComponentOnFoot))]
-[RequireComponent(typeof(InteractionComponent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerStateMachine))]
+[RequireComponent(typeof(PlayerComponentCommunicationProxy))]
 public class PlayerCharacter : CharacterBase
 {
     /// <summary>
@@ -19,11 +19,6 @@ public class PlayerCharacter : CharacterBase
     /// The locomotion component controlling movement on foot.
     /// </summary>
     public LocomotionComponentOnFoot LocomotionComponentOnFoot { get; private set; }
-
-    /// <summary>
-    /// The interaction component handling interactions with objects.
-    /// </summary>
-    public InteractionComponent InteractionComponent { get; private set; }
 
     /// <summary>
     /// The animator component controlling character animations.
@@ -58,13 +53,13 @@ public class PlayerCharacter : CharacterBase
     /// <summary>
     /// Called when the script instance is being loaded.
     /// </summary>
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // Get required components
         Controller = GetComponent<CharacterController>();
         LocomotionComponentOnFoot = GetComponent<LocomotionComponentOnFoot>();
         LocomotionComponentOnFoot.CharacterController = Controller;
-        InteractionComponent = GetComponent<InteractionComponent>();
         Animator = GetComponent<Animator>();
         StateMachine = GetComponent<PlayerStateMachine>();
 

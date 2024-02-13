@@ -82,7 +82,8 @@ public class LocomotionComponentOnFoot : MonoBehaviour
     /// </summary>
     public void Turn(Vector3 direction)
     {
-        transform.forward = direction;
+        Quaternion directionToTurn = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, directionToTurn, rotationSpeed * Time.deltaTime);
     }
 
     private void CalculateDirection(Vector2 movementInputAxes)

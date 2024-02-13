@@ -32,8 +32,6 @@ public class PlayerDodgeState : PlayerGroundedState
         animationLength = PlayerCharacter.Animator.GetCurrentAnimatorStateInfo(0).length;
         // Store the movement direction when the dodge starts
         movementDirectionWhenStartDodging = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection;        
-        // Turn the character towards the dodge direction
-        PlayerCharacter.LocomotionComponentOnFoot.Turn(movementDirectionWhenStartDodging);
     }
 
     /// <summary>
@@ -49,6 +47,11 @@ public class PlayerDodgeState : PlayerGroundedState
         {
             // Change to the walk state
             StateMachine.ChangeState(PlayerCharacter.WalkState);
+        }
+        else
+        {
+            // Turn the character towards the dodge direction
+            PlayerCharacter.LocomotionComponentOnFoot.Turn(movementDirectionWhenStartDodging);
         }
     }
 

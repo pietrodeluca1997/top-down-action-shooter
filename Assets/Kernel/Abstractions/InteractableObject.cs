@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InteractableObject : MonoBehaviour
+public abstract class InteractableObject : MonoBehaviour
 {
     /// <summary>
     /// Called when another Collider enters this object's trigger.
@@ -10,7 +10,7 @@ public class InteractableObject : MonoBehaviour
     {
         if (other.TryGetComponent(out InteractionComponent interactionComponent))
         {
-            interactionComponent.AddInteractable(this);
+            interactionComponent.AddInteractable(this, other);
         }
     }
 
@@ -22,7 +22,9 @@ public class InteractableObject : MonoBehaviour
     {
         if (other.TryGetComponent(out InteractionComponent interactionComponent))
         {
-            interactionComponent.RemoveInteractable(this);
+            interactionComponent.RemoveInteractable(this, other);
         }
     }
+
+    public abstract void Interact(CharacterBase interactor);
 }

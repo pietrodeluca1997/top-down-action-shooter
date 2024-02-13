@@ -57,6 +57,8 @@ public class PlayerController : AbstractSingleton<PlayerController>
         InputActions.PlayerActions.LeftShift.canceled += context => OnLeftShiftAction?.Invoke(EInputActionEventType.Canceled);
 
         InputActions.PlayerActions.Space.performed += context => OnSpaceAction?.Invoke(EInputActionEventType.Performed);
+
+        InputActions.PlayerActions.E.performed += context => OnEAction?.Invoke(EInputActionEventType.Performed);
     }
 
     protected override void OnEnable()
@@ -81,4 +83,9 @@ public class PlayerController : AbstractSingleton<PlayerController>
     /// Event delegate for Space action.
     /// </summary>
     public event PlayerControllerActionDelegateSignature OnSpaceAction;
+
+    /// <summary>
+    /// Event delegate for E action.
+    /// </summary>
+    public event PlayerControllerActionDelegateSignature OnEAction;
 }
