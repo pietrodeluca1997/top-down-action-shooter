@@ -9,8 +9,6 @@ public class EquipmentComponent : MonoBehaviour
 
     public void EquipWeaponOnFirstSlot(WeaponBase weapon)
     {
-        Debug.Log($"Equiping weapon: {weapon.name}");
-
         //TODO: Testing purposes
 
         firstWeaponSlot = Instantiate(weapon, pistolWeaponSocket.position, pistolWeaponSocket.rotation);

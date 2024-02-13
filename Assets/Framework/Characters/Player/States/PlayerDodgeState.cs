@@ -1,13 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 /// <summary>
 /// Represents the player's state when performing a dodge action.
 /// </summary>
 public class PlayerDodgeState : PlayerGroundedState
 {
-    private float animationLength;
+    private readonly float animationLengthBySpeed;
     private float animationStartTime;
     private Vector3 movementDirectionWhenStartDodging;
+    private const string animationClipName = "Dive Forward";
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PlayerDodgeState"/> class.
@@ -17,6 +19,10 @@ public class PlayerDodgeState : PlayerGroundedState
     /// <param name="animationStateName">The name of the animation state.</param>
     public PlayerDodgeState(PlayerCharacter playerCharacter, PlayerStateMachine playerStateMachine, string animationStateName) : base(playerCharacter, playerStateMachine, animationStateName)
     {
+        // Get the length of the dodge animation
+        RuntimeAnimatorController runtimeAnimator = playerCharacter.Animator.runtimeAnimatorController;
+
+        animationLengthBySpeed = runtimeAnimator.animationClips.Where(animClip => animClip.name == animationClipName).First().length / 1.5f;
     }
 
     /// <summary>
@@ -25,13 +31,21 @@ public class PlayerDodgeState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+
         PlayerCharacter.LocomotionComponentOnFoot.IsDodging = true;
         // Start the animation timer
         animationStartTime = Time.time;
-        // Get the length of the current animation
-        animationLength = PlayerCharacter.Animator.GetCurrentAnimatorStateInfo(0).length;
+
         // Store the movement direction when the dodge starts
-        movementDirectionWhenStartDodging = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection;
+        float movementDirectionMagnitude = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection.magnitude;
+        if(movementDirectionMagnitude > 0.6 || movementDirectionMagnitude < -0.6)
+        {
+            movementDirectionWhenStartDodging = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection;
+        }
+        else
+        {
+            StateMachine.ChangeState(PlayerCharacter.IdleState);
+        }
     }
 
     /// <summary>
@@ -39,20 +53,19 @@ public class PlayerDodgeState : PlayerGroundedState
     /// </summary>
     public override void Update()
     {
-        // Move the character in the dodge direction
-        PlayerCharacter.LocomotionComponentOnFoot.Move(new Vector2(movementDirectionWhenStartDodging.x, movementDirectionWhenStartDodging.z));
-
         // Check if the dodge animation has finished
-        if (Time.time - animationStartTime >= animationLength - 0.1f) // Add a 0.1 second margin of error
+        if (Time.time - animationStartTime > animationLengthBySpeed - 0.2f)
         {
             // Change to the walk state
             StateMachine.ChangeState(PlayerCharacter.WalkState);
         }
         else
         {
-            // Turn the character towards the dodge direction
             PlayerCharacter.LocomotionComponentOnFoot.Turn(movementDirectionWhenStartDodging);
         }
+
+        // Move the character in the dodge direction
+        PlayerCharacter.LocomotionComponentOnFoot.Move(new Vector2(movementDirectionWhenStartDodging.x, movementDirectionWhenStartDodging.z));
     }
 
     /// <summary>
@@ -61,6 +74,7 @@ public class PlayerDodgeState : PlayerGroundedState
     public override void Exit()
     {
         base.Exit();
+
         PlayerCharacter.LocomotionComponentOnFoot.IsDodging = false;
     }
 }

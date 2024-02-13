@@ -59,6 +59,7 @@ public class PlayerController : AbstractSingleton<PlayerController>
         InputActions.PlayerActions.Space.performed += context => OnSpaceAction?.Invoke(EInputActionEventType.Performed);
 
         InputActions.PlayerActions.E.performed += context => OnEAction?.Invoke(EInputActionEventType.Performed);
+        InputActions.PlayerActions.E.canceled += context => OnEAction?.Invoke(EInputActionEventType.Canceled);
     }
 
     protected override void OnEnable()
