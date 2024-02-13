@@ -38,7 +38,7 @@ public class PlayerDodgeState : PlayerGroundedState
 
         // Store the movement direction when the dodge starts
         float movementDirectionMagnitude = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection.magnitude;
-        if(movementDirectionMagnitude > 0.6 || movementDirectionMagnitude < -0.6)
+        if(movementDirectionMagnitude > 0.9 || movementDirectionMagnitude < -0.9)
         {
             movementDirectionWhenStartDodging = PlayerCharacter.LocomotionComponentOnFoot.MovementDirection;
         }
