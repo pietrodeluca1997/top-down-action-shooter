@@ -3,7 +3,7 @@
 public class EquipmentComponent : MonoBehaviour
 {
     [SerializeField]
-    private Transform pistolWeaponSocket;
+    private Transform pistolWeaponSocket, weaponHandSocket;
 
     private WeaponBase firstWeaponSlot;
 
@@ -13,11 +13,27 @@ public class EquipmentComponent : MonoBehaviour
 
         firstWeaponSlot = Instantiate(weapon, pistolWeaponSocket.position, pistolWeaponSocket.rotation);
 
-        firstWeaponSlot.transform.parent = pistolWeaponSocket;
-        firstWeaponSlot.transform.position = pistolWeaponSocket.position;
+        PutOnSocket(pistolWeaponSocket, firstWeaponSlot);
+    }
 
-        firstWeaponSlot.transform.localScale = Vector3.one;
+    public void EquipWeapon()
+    {
+        //TODO: Testing purposes
+        if (firstWeaponSlot != null)
+        {
+            PutOnSocket(weaponHandSocket, firstWeaponSlot);
+        }
+        else
+        {
+            Debug.Log("Unable to find a weapon to equip, you must pick one...");
+        }
+    }   
 
-        Destroy(weapon.gameObject);
+    private void PutOnSocket(Transform socket, WeaponBase weapon)
+    {
+        weapon.transform.parent = socket;
+        weapon.transform.position = socket.position;
+
+        weapon.transform.localScale = Vector3.one;
     }
 }

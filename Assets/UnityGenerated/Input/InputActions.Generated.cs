@@ -71,6 +71,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""2918c83c-e5ea-4181-b5c9-fe7005167261"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""E"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61fb434d-5f47-4089-a97a-877a2a5dc82c"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_PlayerActions_LeftShift = m_PlayerActions.FindAction("LeftShift", throwIfNotFound: true);
         m_PlayerActions_Space = m_PlayerActions.FindAction("Space", throwIfNotFound: true);
         m_PlayerActions_E = m_PlayerActions.FindAction("E", throwIfNotFound: true);
+        m_PlayerActions_One = m_PlayerActions.FindAction("One", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_LeftShift;
     private readonly InputAction m_PlayerActions_Space;
     private readonly InputAction m_PlayerActions_E;
+    private readonly InputAction m_PlayerActions_One;
     public struct PlayerActionsActions
     {
         private @InputActions m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @LeftShift => m_Wrapper.m_PlayerActions_LeftShift;
         public InputAction @Space => m_Wrapper.m_PlayerActions_Space;
         public InputAction @E => m_Wrapper.m_PlayerActions_E;
+        public InputAction @One => m_Wrapper.m_PlayerActions_One;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @E.started += instance.OnE;
             @E.performed += instance.OnE;
             @E.canceled += instance.OnE;
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -303,6 +329,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @E.started -= instance.OnE;
             @E.performed -= instance.OnE;
             @E.canceled -= instance.OnE;
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -327,5 +356,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnLeftShift(InputAction.CallbackContext context);
         void OnSpace(InputAction.CallbackContext context);
         void OnE(InputAction.CallbackContext context);
+        void OnOne(InputAction.CallbackContext context);
     }
 }

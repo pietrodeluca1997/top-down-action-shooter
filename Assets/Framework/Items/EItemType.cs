@@ -1,0 +1,4 @@
+﻿public enum EItemType
+{
+    Weapon
+}

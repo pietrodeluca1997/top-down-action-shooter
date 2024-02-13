@@ -69,15 +69,6 @@ public class LocomotionComponentOnFoot : MonoBehaviour
     }
 
     /// <summary>
-    /// Rotates the character to look at the specified direction.
-    /// </summary>
-    public void LookAt(Vector3 direction)
-    {
-        Quaternion lookAtDirection = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookAtDirection, rotationSpeed * Time.deltaTime);
-    }
-
-    /// <summary>
     /// Turns the character to face the specified direction instantly.
     /// </summary>
     public void Turn(Vector3 direction)

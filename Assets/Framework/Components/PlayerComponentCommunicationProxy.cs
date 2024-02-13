@@ -41,6 +41,7 @@ public class PlayerComponentCommunicationProxy : MonoBehaviour
         PlayerController = GetComponent<PlayerController>();
 
         PlayerController.OnEAction += OnInteractionAction;
+        PlayerController.OnOneKeyAction += OnActionBarAction;
     }
 
     public void OnInteractionAction(EInputActionEventType actionEventType)
@@ -49,6 +50,12 @@ public class PlayerComponentCommunicationProxy : MonoBehaviour
         {
             nearestInteractableObject.Interact(PlayerCharacter);
         }
+    }
+
+    public void OnActionBarAction(EInputActionEventType actionEventType, int slotIndex)
+    {
+        //TODO: Testing purposes
+        EquipmentComponent.EquipWeapon();
     }
 }
 

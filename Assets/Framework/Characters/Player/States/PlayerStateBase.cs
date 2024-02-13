@@ -59,7 +59,7 @@ public abstract class PlayerStateBase : IPlayerStateBase
         Vector3 mouseWorldPosition = StateMachine.PlayerController.CalculateMouseWorldPosition();
         if (mouseWorldPosition != Vector3.zero)
         {
-            PlayerCharacter.LocomotionComponentOnFoot.LookAt(mouseWorldPosition);
+            PlayerCharacter.LocomotionComponentOnFoot.Turn(mouseWorldPosition);
         }
     }
 

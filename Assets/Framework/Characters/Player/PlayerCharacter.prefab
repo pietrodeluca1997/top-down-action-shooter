@@ -385,6 +385,37 @@ Transform:
   - {fileID: 6017252074282150580}
   m_Father: {fileID: 1704924017006422266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1545994513670357474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8762408682025940755}
+  m_Layer: 0
+  m_Name: WeaponHandSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8762408682025940755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545994513670357474}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 380381971925177435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1550237875372879966
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +931,7 @@ Transform:
   - {fileID: 4993268256014239213}
   - {fileID: 7584774003742850506}
   - {fileID: 4461017217164248765}
+  - {fileID: 8762408682025940755}
   m_Father: {fileID: 6442534139848199790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2938697536325071770
@@ -1019,6 +1051,7 @@ GameObject:
   - component: {fileID: 6696001092300070301}
   - component: {fileID: 234678565721562225}
   - component: {fileID: 3739311460155778568}
+  - component: {fileID: 6112549253929467301}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -1158,7 +1191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 445e1e80de7fa454d917dc2afe59d8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsAvailableForInteraction: []
 --- !u!114 &234678565721562225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,6 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pistolWeaponSocket: {fileID: 465495794771095783}
+  weaponHandSocket: {fileID: 8762408682025940755}
 --- !u!114 &3739311460155778568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,6 +1217,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aec3bd9387987c469a13db93d8747bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6112549253929467301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526323756083989983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868c04787d8df3c49ab75f2b9d3ec2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryItems: []
 --- !u!1 &3526411559229449031
 GameObject:
   m_ObjectHideFlags: 0
