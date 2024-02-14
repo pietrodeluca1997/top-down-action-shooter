@@ -4,6 +4,7 @@
 [RequireComponent(typeof(InteractionComponent))]
 [RequireComponent(typeof(InventoryComponent))]
 [RequireComponent(typeof(EquipmentComponent))]
+[RequireComponent(typeof(CombatComponent))]
 public class CharacterBase : MonoBehaviour
 {
     /// <summary>
@@ -21,10 +22,16 @@ public class CharacterBase : MonoBehaviour
     /// </summary>
     public InventoryComponent InventoryComponent { get; private set; }
 
+    /// <summary>
+    /// The combat component.
+    /// </summary>
+    public CombatComponent CombatComponent { get; private set; }
+
     protected virtual void Awake()
     {
         InteractionComponent = GetComponent<InteractionComponent>();
         EquipmentComponent = GetComponent<EquipmentComponent>();
         InventoryComponent = GetComponent<InventoryComponent>();
+        CombatComponent = GetComponent<CombatComponent>();
     }
 }

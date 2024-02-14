@@ -80,6 +80,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightMouseButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""f83a8589-d3ac-4038-a8cd-71afaa980045"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e59d02f-9cb9-45c7-af40-82d1ca67cce1"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightMouseButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_PlayerActions_Space = m_PlayerActions.FindAction("Space", throwIfNotFound: true);
         m_PlayerActions_E = m_PlayerActions.FindAction("E", throwIfNotFound: true);
         m_PlayerActions_One = m_PlayerActions.FindAction("One", throwIfNotFound: true);
+        m_PlayerActions_RightMouseButton = m_PlayerActions.FindAction("RightMouseButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Space;
     private readonly InputAction m_PlayerActions_E;
     private readonly InputAction m_PlayerActions_One;
+    private readonly InputAction m_PlayerActions_RightMouseButton;
     public struct PlayerActionsActions
     {
         private @InputActions m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Space => m_Wrapper.m_PlayerActions_Space;
         public InputAction @E => m_Wrapper.m_PlayerActions_E;
         public InputAction @One => m_Wrapper.m_PlayerActions_One;
+        public InputAction @RightMouseButton => m_Wrapper.m_PlayerActions_RightMouseButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @One.started += instance.OnOne;
             @One.performed += instance.OnOne;
             @One.canceled += instance.OnOne;
+            @RightMouseButton.started += instance.OnRightMouseButton;
+            @RightMouseButton.performed += instance.OnRightMouseButton;
+            @RightMouseButton.canceled += instance.OnRightMouseButton;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -332,6 +358,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @One.started -= instance.OnOne;
             @One.performed -= instance.OnOne;
             @One.canceled -= instance.OnOne;
+            @RightMouseButton.started -= instance.OnRightMouseButton;
+            @RightMouseButton.performed -= instance.OnRightMouseButton;
+            @RightMouseButton.canceled -= instance.OnRightMouseButton;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -357,5 +386,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnSpace(InputAction.CallbackContext context);
         void OnE(InputAction.CallbackContext context);
         void OnOne(InputAction.CallbackContext context);
+        void OnRightMouseButton(InputAction.CallbackContext context);
     }
 }

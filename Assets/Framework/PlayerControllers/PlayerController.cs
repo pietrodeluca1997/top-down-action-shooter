@@ -22,6 +22,10 @@ public class PlayerController : AbstractSingleton<PlayerController>
     /// </summary>
     public Vector3 MovementInput { get; private set; }
 
+    [SerializeField]
+    private GameObject aimTarget;
+
+
     /// <summary>
     /// Calculates the world position of the mouse based on screen coordinates.
     /// </summary>
@@ -34,6 +38,8 @@ public class PlayerController : AbstractSingleton<PlayerController>
             Vector3 mouseDirection = hitInfo.point - transform.position;
             mouseDirection.y = 0f;
             mouseDirection.Normalize();
+
+            aimTarget.transform.position = hitInfo.point;
 
             return mouseDirection;
         }
@@ -61,6 +67,9 @@ public class PlayerController : AbstractSingleton<PlayerController>
         InputActions.PlayerActions.E.performed += context => OnEAction?.Invoke(EInputActionEventType.Performed);
 
         InputActions.PlayerActions.One.performed += context => OnOneKeyAction?.Invoke(EInputActionEventType.Performed, 1);
+
+        InputActions.PlayerActions.RightMouseButton.performed += context => OnRightMouseButtonAction?.Invoke(EInputActionEventType.Performed);
+        InputActions.PlayerActions.RightMouseButton.canceled += context => OnRightMouseButtonAction?.Invoke(EInputActionEventType.Canceled);
     }
 
     protected override void OnEnable()
@@ -91,6 +100,11 @@ public class PlayerController : AbstractSingleton<PlayerController>
     /// Event delegate for E action.
     /// </summary>
     public event PlayerControllerActionDelegateSignature OnEAction;
+
+    /// <summary>
+    /// Event delegate for Right Mouse Button action.
+    /// </summary>
+    public event PlayerControllerActionDelegateSignature OnRightMouseButtonAction;
 
     /// <summary>
     /// Event delegate for 1 action.

@@ -42,6 +42,7 @@ public class PlayerComponentCommunicationProxy : MonoBehaviour
 
         PlayerController.OnEAction += OnInteractionAction;
         PlayerController.OnOneKeyAction += OnActionBarAction;
+        PlayerController.OnRightMouseButtonAction += OnAimingAction;
     }
 
     public void OnInteractionAction(EInputActionEventType actionEventType)
@@ -56,6 +57,19 @@ public class PlayerComponentCommunicationProxy : MonoBehaviour
     {
         //TODO: Testing purposes
         EquipmentComponent.EquipWeapon();
+    }
+
+
+    public void OnAimingAction(EInputActionEventType actionEventType)
+    {
+        if (actionEventType == EInputActionEventType.Performed)
+        {
+            PlayerCharacter.CombatComponent.StartAiming();
+        }
+        else if (actionEventType == EInputActionEventType.Canceled)
+        {
+            PlayerCharacter.CombatComponent.StopAiming();
+        }
     }
 }
 
